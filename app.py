@@ -21,8 +21,22 @@ app = Flask(__name__)
 #################################################
 
 @app.route("/")
+@app.route("/home")
 def home():
-    return render_template('index.html', name=name)
+    return render_template('Home.html')
+
+@app.route("/Data_Comparison")
+def datacomparison():
+    return render_template('Data Comparison.html')
+
+@app.route("/Data_Set")
+def dataset():
+    return render_template('Data set.html')
+
+@app.route("/Location_View")
+def locationview():
+    return render_template('Location View.html')
+
 
 @app.route("/allsales")
 def alldata():
