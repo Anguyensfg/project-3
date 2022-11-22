@@ -173,7 +173,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="images/Vic.jpg" alt="Victoria" width="1200" height="700">
+        <img src="{{ url_for('static', filename='images/Vic.jpg')}}" alt="Victoria" width="1200" height="700">
         <div class="carousel-caption">
           <h3>Victoria</h3>
           <p>Population of 6,593,300</p>
@@ -181,7 +181,7 @@
       </div>
 
       <div class="item">
-        <img src="images/NSW.jpg" alt="New South Wales" width="1200" height="700">
+        <img src="{{ url_for('static', filename='images/NSW.jpg')}}" alt="New South Wales" width="1200" height="700">
         <div class="carousel-caption">
           <h3>New South Wales</h3>
           <p>Population of 8,130,100</p>
@@ -189,7 +189,7 @@
       </div>
     
       <div class="item">
-        <img src="images/QLD.jpg" alt="Queensland" width="1200" height="700">
+        <img src="{{ url_for('static', filename='images/QLD.jpg')}}" alt="Queensland" width="1200" height="700">
         <div class="carousel-caption">
           <h3>Queensland</h3>
           <p>Population of 5,296,100</p>
@@ -198,7 +198,7 @@
    
 
     <div class="item">
-      <img src="images/SA.jpg" alt="South Australia" width="1200" height="700">
+      <img src="{{ url_for('static', filename='images/SA.jpg')}}" alt="South Australia" width="1200" height="700">
       <div class="carousel-caption">
         <h3>South Australia</h3>
         <p>Population of 1,815,500</p>
@@ -207,7 +207,7 @@
  
 
   <div class="item">
-    <img src="images/WA.jpg" alt="Western Australia" width="1200" height="700">
+    <img src="{{ url_for('static', filename='images/WA.jpg')}}" alt="Western Australia" width="1200" height="700">
     <div class="carousel-caption">
       <h3>Western Australia</h3>
       <p>Population of 2,773,400</p>
@@ -216,7 +216,7 @@
 
 
 <div class="item">
-  <img src="images/TAS.jpg" alt="Tasmania" width="1200" height="700">
+  <img src="{{ url_for('static', filename='images/TAS.jpg')}}" alt="Tasmania" width="1200" height="700">
   <div class="carousel-caption">
     <h3>Tasmania</h3>
     <p>Population of 571,200</p>
@@ -225,7 +225,7 @@
 
 
 <div class="item">
-  <img src="images/NT.jpg" alt="Northern Territory" width="1200" height="700">
+  <img src="{{ url_for('static', filename='images/NT.jpg')}}" alt="Northern Territory" width="1200" height="700">
   <div class="carousel-caption">
     <h3>Northern Territory</h3>
     <p>Population of 571,200</p>
@@ -235,7 +235,7 @@
 
 
 <div class="item">
-  <img src="images/ACT.jpg" alt="Australia Capital Territory" width="1200" height="700">
+  <img src="{{ url_for('static', filename='images/ACT.jpg')}}" alt="Australia Capital Territory" width="1200" height="700">
   <div class="carousel-caption">
     <h3>ACT</h3>
     <p>Population of 571,200</p>
@@ -273,7 +273,7 @@
     <div class="col-sm-4">
       <p class="text-center"><strong>Alistair</strong></p><br>
       <a href="#demo" data-toggle="collapse">
-        <img src="images/Alistair.jpg" class="img-circle person" alt="Team Member 1" width="255" height="255">
+        <img src="{{ url_for('static', filename='images/Alistair.jpg')}}" class="img-circle person" alt="Team Member 1" width="255" height="255">
       </a>
       <div id="demo" class="collapse">
         <p>Data Engineer</p>
@@ -283,7 +283,7 @@
     <div class="col-sm-4">
       <p class="text-center"><strong>Joshua</strong></p><br>
       <a href="#demo2" data-toggle="collapse">
-        <img src="images/josh.jpg" class="img-circle person" alt="Team Member 3" width="255" height="255">
+        <img src="{{ url_for('static', filename='images/josh.jpg')}}" class="img-circle person" alt="Team Member 3" width="255" height="255">
       </a>
       <div id="demo2" class="collapse">
         <p>Data Scientist</p>
@@ -293,7 +293,7 @@
     <div class="col-sm-4">
       <p class="text-center"><strong>Neha</strong></p><br>
       <a href="#demo3" data-toggle="collapse">
-        <img src="images/neha.jpg" class="img-circle person" alt="Team Member 3" width="255" height="255">
+        <img src="{{ url_for('static', filename='images/neha.jpg')}}" class="img-circle person" alt="Team Member 3" width="255" height="255">
       </a>
       <div id="demo3" class="collapse">
         <p>Data Architect</p>
@@ -313,7 +313,7 @@
     <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="images/data comparison.jpg" alt="Data Analysis" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/data comparison.jpg')}}" alt="Data Analysis" width="400" height="300">
           <p><strong>Data Comparison</strong></p>
           <p>Plotting movement between property price and interest rate movement</p>
           <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data Comparison.html'">Data Comparison</button>
@@ -321,7 +321,7 @@
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="images/location view.jpg" alt="Australia Map" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/location view.jpg')}}" alt="Australia Map" width="400" height="300">
           <p><strong>Location View</strong></p>
           <p>Mapping property prices and location around Australia</p>
           <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location View.html'">Location View</button>
@@ -329,7 +329,7 @@
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="images/raw data.jpg" alt="Raw Data" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/raw data.jpg')}}" alt="Raw Data" width="400" height="300">
           <p><strong>Data Set</strong></p>
           <p>Raw Data set use for analysis</p>
           <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data set.html'">Data Set</button>
