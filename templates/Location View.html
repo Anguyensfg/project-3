@@ -37,8 +37,8 @@
   }
   .carousel-inner img {
     -webkit-filter: grayscale(90%);
-    filter: grayscale(90%);
-    width: 100%;
+    filter: grayscale(90%); 
+    width: 100%; 
     margin: auto;
   }
   .carousel-caption h3 {
@@ -139,10 +139,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Home.html">HOME</a></li>
-        <li><a href="Data_Comparison.html">Data Comparison</a></li>
-        <li><a href="Location_View.html">Location View</a></li>
-        <li><a href="Data_Set.html">Data Set</a></li>
+        <li><a href="home">HOME</a></li>
+        <li><a href="Data_Comparison">Data Comparison</a></li>
+        <li><a href="Location_View">Location View</a></li>
+        <li><a href="Data_Set">Data Set</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Source Link
           <span class="caret"></span></a>
@@ -159,8 +159,8 @@
 
 <!-- Body-->
 <div id="Body" class="container text-center">
-  <h3> Data Set</h3>
-  <p><em>Raw Data Table</em></p>
+  <h3> Location View</h3>
+  <p><em>Filter by Property type</em></p>
   <br><br><br><br><br><br><br><br><br><br>
   <p>
   <br><br><br><br><br><br><br><br><br><br><br><br>
@@ -177,28 +177,27 @@
     <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="../static/images/data comparison.jpg" alt="Data Analysis" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/data comparison.jpg')}}" alt="Data Analysis" width="400" height="300">
           <p><strong>Data Comparison</strong></p>
           <p>Plotting movement between property price and interest rate movement</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data_Comparison.html'">Data Comparison</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data Comparison.html'">Data Comparison</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="../static/images/location view.jpg" alt="Australia Map" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/location view.jpg')}}" alt="Australia Map" width="400" height="300">
           <p><strong>Location View</strong></p>
           <p>Mapping property prices and location around Australia</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location_View.html'">Location View</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location View.html'">Location View</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="../static/images/raw data.jpg" alt="Raw Data" width="400" height="300">
+          <img src="{{ url_for('static', filename='images/raw data.jpg')}}" alt="Raw Data" width="400" height="300">
           <p><strong>Data Set</strong></p>
           <p>Raw Data set use for analysis</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data_Set.html'">Data Set</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data set.html'">Data Set</button>
         </div>
       </div>
     </div>
   </div>
-  
