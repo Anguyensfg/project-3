@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <title>Property Movement in Australia vs RBA rate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
+  }
+  h3, h4 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 10px;      
+    font-size: 20px;
+    color: #3d43b4;
+  }
+  .container {
+    padding: 80px 120px;
+  }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%); 
+    width: 100%; 
+    margin: auto;
+  }
+  .carousel-caption h3 {
+    color: #1afe49 !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+  .bg-1 {
+    background: #041348;
+    color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #1afe49;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail p {
+    margin-top: 15px;
+    color: #555;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #1afe49;
+    border-radius: 0;
+    transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+    border: 1px solid #333;
+    background-color: #041348;
+    color: #1afe49;
+
+  }
+  .nav-tabs li a {
+    color: #777;
+  } 
+  .navbar {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #041348;
+    border: 0;
+    font-size: 12px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+    color: #fff  !important;
+  }
+  .navbar-nav li a:hover {
+    color: #1afe49 !important;
+  }
+  .navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #041348 !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+  .open .dropdown-toggle {
+    color: #1afe49;
+    background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+    color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+    background-color: #3d43b4 !important;
+  }
+  textarea {
+    resize: none;
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Project 3 - Visualizing Data</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home">HOME</a></li>
+        <li><a href="Data_Comparison">Data Comparison</a></li>
+        <li><a href="Location_View">Location View</a></li>
+        <li><a href="Data_Set">Data Set</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Source Link
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales">Property Data</a></li>
+            <li><a href="https://www.rba.gov.au/statistics/cash-rate/">RBA Cash Rate</a></li>
+            <li><a href="https://www.realestate.com.au/news/property-market-trends/?sourcePage=rea:sold:homepage&sourceElement=product-entry-cta-researching-property_market_trends">Additional information</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+      <li data-target="#myCarousel" data-slide-to="6"></li>
+      <li data-target="#myCarousel" data-slide-to="7"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="{{ url_for('static', filename='images/Vic.jpg')}}" alt="Victoria" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Victoria</h3>
+          <p>Population of 6,593,300</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="{{ url_for('static', filename='images/NSW.jpg')}}" alt="New South Wales" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>New South Wales</h3>
+          <p>Population of 8,130,100</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="{{ url_for('static', filename='images/QLD.jpg')}}" alt="Queensland" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Queensland</h3>
+          <p>Population of 5,296,100</p>
+        </div>      
+      </div>
+   
+
+    <div class="item">
+      <img src="{{ url_for('static', filename='images/SA.jpg')}}" alt="South Australia" width="1200" height="700">
+      <div class="carousel-caption">
+        <h3>South Australia</h3>
+        <p>Population of 1,815,500</p>
+      </div>      
+    </div>
+ 
+
+  <div class="item">
+    <img src="{{ url_for('static', filename='images/WA.jpg')}}" alt="Western Australia" width="1200" height="700">
+    <div class="carousel-caption">
+      <h3>Western Australia</h3>
+      <p>Population of 2,773,400</p>
+    </div>      
+  </div>
+
+
+<div class="item">
+  <img src="{{ url_for('static', filename='images/TAS.jpg')}}" alt="Tasmania" width="1200" height="700">
+  <div class="carousel-caption">
+    <h3>Tasmania</h3>
+    <p>Population of 571,200</p>
+  </div>      
+</div>
+
+
+<div class="item">
+  <img src="{{ url_for('static', filename='images/NT.jpg')}}" alt="Northern Territory" width="1200" height="700">
+  <div class="carousel-caption">
+    <h3>Northern Territory</h3>
+    <p>Population of 571,200</p>
+  </div>      
+</div>
+
+
+
+<div class="item">
+  <img src="{{ url_for('static', filename='images/ACT.jpg')}}" alt="Australia Capital Territory" width="1200" height="700">
+  <div class="carousel-caption">
+    <h3>ACT</h3>
+    <p>Population of 571,200</p>
+  </div>      
+</div>
+</div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- Body-->
+<div id="Body" class="container text-center">
+  <h3>Australia Property Market Movement Against RBA rate Decision</h3>
+  <p><em>Comparision across state and property types</em></p>
+  <p>The cash rate and you
+    The cash rate is the rate at which commercial banks like the big four can borrow money from the central bank. Commercial banks then align their own interest rates for customers with this. It’s not identical because commercial banks will also have other factors influencing their costs of borrowing but a basic rule of thumb follows. If the cash rate goes up, commercial bank interest rates go up. If the cash rate goes down, commercial bank interest rates go down.
+    So, for a loan like a mortgage with a variable interest rate (around 60% of mortgages), this means your mortgage interest repayments will go up each time the cash rate increases.
+    And what this means for property is…
+    Mortgage interest rates and property
+    The size of the loan you are able to take out is affected by the combination of principal and interest. The bigger the interest repayments, the lower the principal you can borrow. This affects your ability to bid on properties. Everyone is in the same boat so this can affect property prices. Lenders typically estimate your borrowing power using a rate that is 3% above the current rate to factor increases.
+    And…
+    Those who already have mortgages are paying higher repayments. In some cases, people may find the repayments stretch beyond their capacity and they may default on their loans (or sell before they reach this point).
+    This, therefore, combines to depress property prices. It doesn’t happen instantly because it takes some time for interest rates pressure to flow through.
+    </p>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Alistair</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="{{ url_for('static', filename='images/Alistair.jpg')}}" class="img-circle person" alt="Team Member 1" width="255" height="255">
+      </a>
+      <div id="demo" class="collapse">
+        <p>Data Engineer</p>
+        <p>“Data are just summaries of thousands of stories – tell a few of those stories to help make the data meaningful.” — Chip and Dan Heath</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Joshua</strong></p><br>
+      <a href="#demo2" data-toggle="collapse">
+        <img src="{{ url_for('static', filename='images/josh.jpg')}}" class="img-circle person" alt="Team Member 3" width="255" height="255">
+      </a>
+      <div id="demo2" class="collapse">
+        <p>Data Scientist</p>
+        <p>“Data are just summaries of thousands of stories – tell a few of those stories to help make the data meaningful.” — Chip and Dan Heath</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Neha</strong></p><br>
+      <a href="#demo3" data-toggle="collapse">
+        <img src="{{ url_for('static', filename='images/neha.jpg')}}" class="img-circle person" alt="Team Member 3" width="255" height="255">
+      </a>
+      <div id="demo3" class="collapse">
+        <p>Data Architect</p>
+        <p>“No great marketing decisions have ever been made on qualitative data.” — John Sculley.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Visualisation Data -->
+<div id="Links" class="bg-1">
+  <div class="container">
+    <h3 class="text-center">Visualizing Data</h3>
+    <p class="text-center">Comparision between Australia Property Price <br> RBA interest movement</p>
+
+    
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='images/data comparison.jpg')}}" alt="Data Analysis" width="400" height="300">
+          <p><strong>Data Comparison</strong></p>
+          <p>Plotting movement between property price and interest rate movement</p>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data Comparison.html'">Data Comparison</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='images/location view.jpg')}}" alt="Australia Map" width="400" height="300">
+          <p><strong>Location View</strong></p>
+          <p>Mapping property prices and location around Australia</p>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location View.html'">Location View</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='images/raw data.jpg')}}" alt="Raw Data" width="400" height="300">
+          <p><strong>Data Set</strong></p>
+          <p>Raw Data set use for analysis</p>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data set.html'">Data Set</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+  <h3 class="text-center">Data Source Link</h3>  
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Property Data</a></li>
+    <li><a data-toggle="tab" href="#menu1">RBA Cash Rate</a></li>
+    <li><a data-toggle="tab" href="#menu2">Additional Information</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h2>Property Data</h2>
+      <p>Residential property sales data and value indices are also used in the following data dashboard menu options: Australian property value, Residential property price index change - capital cities and Residential property - price and volume (the latter two sourced from the Australian Bureau of Statistics publication which uses data supplied by CoreLogic).
+      <br><br>
+      <li><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales">https://www.kaggle.com/datasets/suryajadahake/australia-property-sales</a></li>
+      <br><br>
+      </p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h2>RBA Cash Rate</h2>
+      <p>Monetary policy decisions involve setting a target for the cash rate. A media release is issued at 2.30 pm after each Reserve Bank Board meeting, with any change in the cash rate target taking effect the following day. (Prior to December 2007, media releases were issued only when the cash rate target was changed.) See About Monetary Policy for more details.
+
+        The cash rate is the interest rate on unsecured overnight loans between banks. It is the (near) risk-free benchmark rate (RFR) for the Australian dollar and is also know by the acronym AONIA in financial markets. See Cash Rate Methodology for more details on how the cash rate is determined, Expert Judgement for more details on fall back procedures when there are insufficient cash market transactions, and Statistical Table F1 for the history of the cash rate.
+        
+        The cash rate target graph and table below display interactive information. You can show data according to the sample periods and the direction of change in the cash rate target by selecting from the display options.
+        <br><br>
+        <li><a href="https://www.rba.gov.au/statistics/cash-rate/">https://www.rba.gov.au/statistics/cash-rate/</a></li>
+        <br><br>
+      </p>
+      </div>
+    <div id="menu2" class="tab-pane fade">
+      <h2>Additional Information</h2>
+      <p>Delve into market data - Stat on top of real estate trends written by economists and property expects
+        <br><br>
+        <li><a href="https://www.realestate.com.au/news/property-market-trends/?sourcePage=rea:sold:homepage&sourceElement=product-entry-cta-researching-property_market_trends">https://www.realestate.com.au/news/property-market-trends/?sourcePage=rea:sold:homepage&sourceElement=product-entry-cta-researching-property_market_trends</a></li>
+        <li><a href="https://www.domain.com.au/news/">https://www.domain.com.au/news/</a></li>
+        <li><a href="https://www.forbes.com/advisor/au/personal-finance/property-market-update/">https://www.forbes.com/advisor/au/personal-finance/property-market-update/</a></li>
+        <br><br>
+      </p>
+    </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
