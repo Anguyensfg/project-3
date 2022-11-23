@@ -40,7 +40,6 @@ def locationview():
 
 @app.route("/allsales")
 def alldata():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
     all_sales = pd.read_sql_query("SELECT latitude, longitude from sales", conn)
     conn.close()
 
@@ -50,40 +49,42 @@ def alldata():
     sales_json = json.dumps(sales_parsed, indent = 4)
 
     return (sales_json)
-    return render_template('index.html', name = sales_json)
 
 @app.route("/townhouse")
 def townhouse():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
     all_townhouse = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'townhouse'", conn)
     conn.close()
 
     townhouse_result = all_townhouse.to_json(orient = "records")
     townhouse_parsed = json.loads(townhouse_result)
 
-    return (json.dumps(townhouse_parsed, indent = 4))
+    townhouse_json = json.dumps(townhouse_parsed, indent = 4)
+
+    return (townhouse_json)
 
 @app.route("/unit")
 def unit():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
     all_unit = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'unit'", conn)
     conn.close()
 
     unit_result = all_unit.to_json(orient = "records")
     unit_parsed = json.loads(unit_result)
 
-    return (json.dumps(unit_parsed, indent = 4))
+    unit_json = json.dumps(unit_parsed, indent = 4)
+
+    return (unit_json)
 
 @app.route("/house")
 def house():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
     all_house = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'house'", conn)
     conn.close()
 
     house_result = all_house.to_json(orient = "records")
     house_parsed = json.loads(house_result)
 
-    return (json.dumps(house_parsed, indent = 4))
+    house_json = json.dumps(house_parsed, indent = 4)
+
+    return (house_json)
 
 if __name__ == '__main__':
     app.run(debug=True)
