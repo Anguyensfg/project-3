@@ -19,56 +19,111 @@ var animation = anime ({
 });
 animation.play();
 
-var delayInMilliseconds = 5000; //1 second
+var delayInMilliseconds = 2000; //1 second
 
 setTimeout(function() {
   animation.pause();
-  var map = L.map('map', {
-    center: [-25.27, 133.77], // EDIT latitude, longitude to re-center map
-    zoom: 5,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
-    scrollWheelZoom: false,
-    tap: false
+
+  var jsonFeatures = [];
+  
+  function circleColor(type) {
+    if (type == "house") {
+      return "rgb(255,236,34)"; 
+    } else if (type == "townhouse") {
+      return "rgb(255,143,69)"; 
+    } else if (type == "unit") {
+      return "rgb(145,19,29)";
+    } 
+  }
+
+  sales_json.forEach(function(point){
+      var lat = point.latitude;
+      var lon = point.longitude;
+  
+      var feature = {type: 'Feature',
+          properties: point,
+          geometry: {
+              type: 'Point',
+              coordinates: [lon,lat]
+          }
+      };
+      
+      jsonFeatures.push(feature);
+  });
+  
+  var propertyGeoJson = { type: 'FeatureCollection', features: jsonFeatures };
+
+    function onEachFeature(feature, layer) {
+      layer.bindPopup(`<h2>${feature.properties.property_type}</h2> 
+      <h4> Price: ${feature.properties.price}</h4><h4> Date: ${feature.properties.date_sold}</h4>`);
+    }
+
+  let allProperties = L.geoJSON(propertyGeoJson, {
+    pointToLayer: function (feature, latlng) {
+      return L.circle(latlng, {
+        radius: 40,
+        fillColor: circleColor(feature.properties.property_type),
+        fillOpacity: 0.65,
+        weight: 1,
+      });
+    },
+    onEachFeature: onEachFeature,
   });
 
-  /* Control panel to display map layers */
-  var controlLayers = L.control.layers( null, null, {
-    position: "topright",
-    collapsed: false
-  }).addTo(map);
+  var House = L.geoJson(propertyGeoJson, { 
+    filter: function(feature) { return feature.properties.property_type == "house" },
+    onEachFeature: onEachFeature,
+  });
 
-  // display Carto basemap tiles with light features and labels
-  var light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
-  controlLayers.addBaseLayer(light, 'Carto Light basemap');
+  var Townhouse = L.geoJson(propertyGeoJson, { 
+    filter: function(feature) { return feature.properties.property_type == "townhouse" },
+    onEachFeature: onEachFeature,
+  });
 
-  /* Stamen colored terrain basemap tiles with labels */
-  var terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
-  }); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
-  controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
+  var Unit = L.geoJson(propertyGeoJson, { 
+    filter: function(feature) { return feature.properties.property_type == "unit" },
+    onEachFeature: onEachFeature,
+  });
+    // Create the base layers.
+    let street = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }
+    );
 
-  // see more basemap options at https://leaflet-extras.github.io/leaflet-providers/preview/
-  // Read markers data from data.csv
-  var markers = L.markerClusterGroup();
-  $.get('./data/data.csv', function(csvString) {
-
-    // Use PapaParse to convert string to array of objects
-    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
-
-    // For each row in data, create a marker and add it to the map
-    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
-    for (var i in data) {
-      var row = data[i];
-
-      var marker = L.marker([row.lat, row.lon], {
-        opacity: 1
-      }).bindPopup(row.Title);
-      markers.addLayer(marker);
-    }
+    let sattelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
-    map.addLayer(markers)
 
-  
+    // Create a baseMaps object.
+    let baseMaps = {
+      "Light Map": street,
+      "Terrain Map": sattelite,
+    };
+
+        // Create an overlay object to hold our overlay.
+        let overlayMaps = {
+          "All Types": allProperties,
+          "House": House,
+          "Townhouse": Townhouse,
+          "Unit": Unit
+        };
+
+    // Create our map, giving it the streetmap and mines layers to display on load.
+    let myMap = L.map("map", {
+      center: [-24, 120],
+      zoom: 5,
+      layers: [street, allProperties],
+    });
+
+    // Create a layer control.
+    L.control
+      .layers(baseMaps, overlayMaps, {
+        collapsed: false,
+      })
+      .addTo(myMap);
+      myMap.fitBounds(allProperties.getBounds());
 }, delayInMilliseconds);
 
