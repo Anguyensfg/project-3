@@ -27,12 +27,13 @@ def home():
 
 @app.route("/Data_Comparison")
 def datacomparison():
+    conn = sqlite3.connect("Raw_Data/property.sqlite")
     avg_price = pd.read_sql_query("SELECT COUNT(*) AS total_sales, ROUND(AVG(price),0) avg_sale_price, property_type, date_sold,"
                                     "IIF(date_sold LIKE '%2018', 2018,"
                                     "IIF(date_sold LIKE '%2019', 2019,"
-                                    "IF(date_sold LIKE '%2020', 2020,"
-                                    "IIF(date_sold LIKE '%2021', 2021, Null)))) AS year"
-                                    "FROM salesGROUP BY date_sold, property_type ORDER BY year, date_sold", conn)
+                                    "IIF(date_sold LIKE '%2020', 2020,"
+                                    "IIF(date_sold LIKE '%2021', 2021, Null)))) AS year "
+                                    "FROM sales GROUP BY date_sold, property_type ORDER BY year, date_sold", conn)
     conn.close()
 
     avg_result = avg_price.to_json(orient= "records")
@@ -44,6 +45,7 @@ def datacomparison():
 
 @app.route("/Data_Set")
 def dataset():
+    conn = sqlite3.connect("Raw_Data/property.sqlite")
     all_data = pd.read_sql_query("SELECT * FROM sales", conn)
     conn.close()
 
@@ -55,6 +57,7 @@ def dataset():
 
 @app.route("/Location_View")
 def locationview():
+    conn = sqlite3.connect("Raw_Data/property.sqlite")
     all_sales = pd.read_sql_query("SELECT latitude, longitude, property_type, state, price, date_sold FROM sales", conn)
     conn.close()
 
