@@ -7,17 +7,17 @@ import json
 from flask import Flask, jsonify, request, render_template
 
 #################################################
-# Database Setup
+# Database Setup                                #
 #################################################
 conn = sqlite3.connect("Raw_Data/property.sqlite")
 
 #################################################
-# Flask Setup
+# Flask Setup                                   #
 #################################################
 app = Flask(__name__)
 
 #################################################
-# Flask Routes
+# Flask Routes                                  #
 #################################################
 
 @app.route("/")
@@ -27,79 +27,44 @@ def home():
 
 @app.route("/Data_Comparison")
 def datacomparison():
-    return render_template('Data Comparison.html')
+    avg_price = pd.read_sql_query("SELECT COUNT(*) AS total_sales, ROUND(AVG(price),0) avg_sale_price, property_type, date_sold,"
+                                    "IIF(date_sold LIKE '%2018', 2018,"
+                                    "IIF(date_sold LIKE '%2019', 2019,"
+                                    "IF(date_sold LIKE '%2020', 2020,"
+                                    "IIF(date_sold LIKE '%2021', 2021, Null)))) AS year"
+                                    "FROM salesGROUP BY date_sold, property_type ORDER BY year, date_sold", conn)
+    conn.close()
+
+    avg_result = avg_price.to_json(orient= "records")
+    avg_parsed = json.loads(avg_result)
+
+    avg_json = json.dumps(avg_parsed)
+
+    return render_template('Data Comparison.html', avg_json=avg_json)
 
 @app.route("/Data_Set")
 def dataset():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_sales = pd.read_sql_query("SELECT latitude, longitude,property_type,state,price from sales", conn)
+    all_data = pd.read_sql_query("SELECT * FROM sales", conn)
     conn.close()
 
-    sales_result = all_sales.to_json(orient = "records")
-    sales_parsed = json.loads(sales_result)
+    data_result = all_data.to_json(orient = "records")
+    data_parsed = json.loads(data_result)
 
-    sales_json = json.dumps(sales_parsed)
-    return (sales_json)
+    data_json = json.dumps(data_parsed)
+    return render_template('Data set.html', data_json=data_json)
 
 @app.route("/Location_View")
 def locationview():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_sales = pd.read_sql_query("SELECT latitude, longitude,property_type,state,price,date_sold from sales", conn)
+    all_sales = pd.read_sql_query("SELECT latitude, longitude, property_type, state, price, date_sold FROM sales", conn)
     conn.close()
 
     sales_result = all_sales.to_json(orient = "records")
     sales_parsed = json.loads(sales_result)
 
     sales_json = json.dumps(sales_parsed)
+
     #return (sales_json)
     return render_template('Location View.html', sales_json=sales_json)
-
-@app.route("/allsales")
-def alldata():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_sales = pd.read_sql_query("SELECT latitude, longitude from sales", conn)
-    conn.close()
-
-    sales_result = all_sales.to_json(orient = "records")
-    sales_parsed = json.loads(sales_result)
-
-    sales_json = json.dumps(sales_parsed, indent = 4)
-
-    return (sales_json)
-    return render_template('index.html', name = sales_json)
-
-@app.route("/townhouse")
-def townhouse():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_townhouse = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'townhouse'", conn)
-    conn.close()
-
-    townhouse_result = all_townhouse.to_json(orient = "records")
-    townhouse_parsed = json.loads(townhouse_result)
-
-    return (json.dumps(townhouse_parsed, indent = 4))
-
-@app.route("/unit")
-def unit():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
-    all_unit = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'unit'", conn)
-    conn.close()
-
-    unit_result = all_unit.to_json(orient = "records")
-    unit_parsed = json.loads(unit_result)
-
-    return (json.dumps(unit_parsed, indent = 4))
-
-@app.route("/house")
-def house():
-    conn = sqlite3.connect(r"Raw_Data/property.sqlite")
-    all_house = pd.read_sql_query("SELECT latitude, longitude from sales WHERE property_type = 'house'", conn)
-    conn.close()
-
-    house_result = all_house.to_json(orient = "records")
-    house_parsed = json.loads(house_result)
-
-    return (json.dumps(house_parsed, indent = 4))
 
 if __name__ == '__main__':
     app.run(debug=True)
