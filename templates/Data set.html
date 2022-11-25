@@ -161,6 +161,28 @@
 <div id="Body" class="container text-center">
   <h3> Data Set</h3>
   <p><em>Raw Data Table</em></p>
+  <table border="0" class="table table-hover table-dark">
+    <thead>
+      <tr style="text-align: left;" class="table-light">
+        <th>Price</th>
+        <th>Suburb</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Bedrooms</th>
+        <th>Property Type</th>
+        <th>Postcode</th>
+        <th>Date Sold</th>
+      </tr>
+    </thead>
+    <tbody id="data-output">
+    </tbody>
+  </table>
+  <script type="text/javascript">
+  var data_json = JSON.parse('{{ data_json|safe }}'
+  ); 
+  </script>
   <br><br><br><br><br><br><br><br><br><br>
   <p>
   <br><br><br><br><br><br><br><br><br><br><br><br>
@@ -180,7 +202,7 @@
           <img src="{{ url_for('static', filename='images/data comparison.jpg')}}" alt="Data Analysis" width="400" height="300">
           <p><strong>Data Comparison</strong></p>
           <p>Plotting movement between property price and interest rate movement</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data Comparison.html'">Data Comparison</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data_Comparison'">Data Comparison</button>
         </div>
       </div>
       <div class="col-sm-4">
@@ -188,7 +210,7 @@
           <img src="{{ url_for('static', filename='images/location view.jpg')}}" alt="Australia Map" width="400" height="300">
           <p><strong>Location View</strong></p>
           <p>Mapping property prices and location around Australia</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location View.html'">Location View</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Location_View'">Location View</button>
         </div>
       </div>
       <div class="col-sm-4">
@@ -196,9 +218,10 @@
           <img src="{{ url_for('static', filename='images/raw data.jpg')}}" alt="Raw Data" width="400" height="300">
           <p><strong>Data Set</strong></p>
           <p>Raw Data set use for analysis</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data set.html'">Data Set</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal" onclick="window.location.href='Data_Set'">Data Set</button>
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="static\js\logic.js"> </script>
   </div>
   

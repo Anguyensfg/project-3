@@ -46,7 +46,7 @@ def datacomparison():
 @app.route("/Data_Set")
 def dataset():
     conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_data = pd.read_sql_query("SELECT * FROM sales", conn)
+    all_data = pd.read_sql_query("SELECT * FROM sales LIMIT 10", conn)
     conn.close()
 
     data_result = all_data.to_json(orient = "records")
@@ -68,6 +68,20 @@ def locationview():
 
     #return (sales_json)
     return render_template('Location View.html', sales_json=sales_json)
+
+@app.route("/test")
+def test():
+    conn = sqlite3.connect("Raw_Data/property.sqlite")
+    test_query = pd.read_sql_query("SELECT * FROM 'sales' LIMIT 0,30", conn)
+    conn.close()
+
+    test_result = test_query.to_json(orient = "records")
+    test_parsed = json.loads(test_result)
+
+    test_json = json.dumps(test_parsed)
+
+    return(test_json)
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

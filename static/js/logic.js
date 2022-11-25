@@ -1,4 +1,4 @@
-// Anime.js - https://animejs.com/ - Welcome Screen
+  // Anime.js - https://animejs.com/ - Welcome Screen
 var animation = anime ({
   targets: 'div.box',
   translateY: [
@@ -127,3 +127,29 @@ setTimeout(function() {
       myMap.fitBounds(allProperties.getBounds());
 }, delayInMilliseconds);
 
+fetch(data_json)
+.then(function(response){
+  return response.json();
+})
+.then(function(data){
+  let placeholder = document.querySelector("#data-output");
+  let output = "";
+  for (let data of rows){
+    out += `
+      <tr>
+        <td>$data.price}</td>
+        <td>$data.suburb}</td>
+        <td>$data.city_name}</td>
+        <td>$data.state}</td>
+        <td>$data.latitude}</td>
+        <td>$data.longitude}</td>
+        <td>$data.bedrooms}</td>
+        <td>$data.property_type}</td>
+        <td>$data.postcode}</td>
+        <td>$data.date_sold}</td>
+      </tr>
+    `;
+  }
+
+  placeholder.innerHTML = out;
+});
