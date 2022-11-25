@@ -41,19 +41,19 @@ def datacomparison():
 
     avg_json = json.dumps(avg_parsed)
 
+    #return(avg_json)
     return render_template('Data Comparison.html', avg_json=avg_json)
 
 @app.route("/Data_Set")
 def dataset():
     conn = sqlite3.connect("Raw_Data/property.sqlite")
-    all_data = pd.read_sql_query("SELECT * FROM sales LIMIT 10", conn)
+    all_data = pd.read_sql_query("SELECT * FROM sales", conn)
     conn.close()
 
-    data_result = all_data.to_json(orient = "records")
-    data_parsed = json.loads(data_result)
+    table = all_data.to_html(index=False)
 
-    data_json = json.dumps(data_parsed)
-    return render_template('Data set.html', data_json=data_json)
+    return render_template('Data set.html', table=table)
+    
 
 @app.route("/Location_View")
 def locationview():
