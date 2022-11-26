@@ -40,7 +40,8 @@ def datacomparison():
     avg_parsed = json.loads(avg_result)
 
     avg_json = json.dumps(avg_parsed)
-
+    
+    #return render_template(avg_result)
     return render_template('Data Comparison.html', avg_json=avg_json)
 
 @app.route("/Data_Set")
