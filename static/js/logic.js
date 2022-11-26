@@ -125,4 +125,10 @@ setTimeout(function() {
       })
       .addTo(myMap);
       myMap.fitBounds(allProperties.getBounds());
+
 }, delayInMilliseconds);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
