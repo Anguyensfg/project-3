@@ -1,4 +1,4 @@
-// Anime.js - https://animejs.com/ - Welcome Screen
+  // Anime.js - https://animejs.com/ - Welcome Screen
 var animation = anime ({
   targets: 'div.box',
   translateY: [
@@ -125,10 +125,10 @@ setTimeout(function() {
       })
       .addTo(myMap);
       myMap.fitBounds(allProperties.getBounds());
+
 }, delayInMilliseconds);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 

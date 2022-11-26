@@ -42,6 +42,7 @@ def datacomparison():
     avg_json = json.dumps(avg_parsed)
     
     #return render_template(avg_result)
+
     return render_template('Data Comparison.html', avg_json=avg_json)
 
 @app.route("/Data_Set")
@@ -50,11 +51,10 @@ def dataset():
     all_data = pd.read_sql_query("SELECT * FROM sales", conn)
     conn.close()
 
-    data_result = all_data.to_json(orient = "records")
-    data_parsed = json.loads(data_result)
+    table = all_data.to_html(index=False)
 
-    data_json = json.dumps(data_parsed)
-    return render_template('Data set.html', data_json=data_json)
+    return render_template('Data set.html', table=table)
+    
 
 @app.route("/Location_View")
 def locationview():
@@ -69,6 +69,20 @@ def locationview():
 
     #return (sales_json)
     return render_template('Location View.html', sales_json=sales_json)
+
+@app.route("/test")
+def test():
+    conn = sqlite3.connect("Raw_Data/property.sqlite")
+    test_query = pd.read_sql_query("SELECT * FROM 'sales' LIMIT 0,30", conn)
+    conn.close()
+
+    test_result = test_query.to_json(orient = "records")
+    test_parsed = json.loads(test_result)
+
+    test_json = json.dumps(test_parsed)
+
+    return(test_json)
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
