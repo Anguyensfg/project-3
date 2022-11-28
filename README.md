@@ -57,21 +57,21 @@ Although you will divide the work among the group members, it’s essential to c
 <!-- How to -->
 # How to Install and Run the project 
 
-PANDAS Project3_Data_Cleanup.ipyny 
-coding use to clean up data and redesigned to be ready to be uploaded to SQLprogress 
-Raw Data file (<h3><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales" target="_blank"> Click here to go to the Kaggle website )</a></h3>
-Note: Original file size is too large to be uploaded to GitHub pages 
+PANDAS Project3_Data_Cleanup.ipynb coding used to clean up data and redesigned to be ready to be uploaded to SQLite Database. 
+
+Raw Data file: <h3><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales" target="_blank"> Click here to go to the Kaggle website </a></h3>
+Note: Original file size is too large to be uploaded to GitHub pages.
 
 SQLprogress provides an output data file in Raw Data folder which can view the output data.
 
-Git Bash is required to load the APP.py via python to view HTML pages 
+Git Bash is required to load the app.py via python to view HTML pages.
 
 <p align="right"><a href="#topdoc">Return to the top</a></p>
 
 # How to use the project
 
 Once python app.py command has been run on git bash 
-use the http:// link on the last line to load the website on google chrome browers 
+use the http:// link on the command line to load the website on google chrome browers 
 
 
 Home Page:
