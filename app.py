@@ -27,23 +27,24 @@ def home():
 
 @app.route("/Data_Comparison")
 def datacomparison():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    avg_price = pd.read_sql_query("SELECT COUNT(*) AS total_sales, ROUND(AVG(price),0) avg_sale_price, property_type, date_sold,"
-                                    "IIF(date_sold LIKE '%2018', 2018,"
-                                    "IIF(date_sold LIKE '%2019', 2019,"
-                                    "IIF(date_sold LIKE '%2020', 2020,"
-                                    "IIF(date_sold LIKE '%2021', 2021, Null)))) AS year "
-                                    "FROM sales GROUP BY date_sold, property_type ORDER BY year, date_sold", conn)
-    conn.close()
+    #conn = sqlite3.connect("Raw_Data/property.sqlite")
+    #avg_price = pd.read_sql_query("SELECT COUNT(*) AS total_sales, ROUND(AVG(price),0) avg_sale_price, property_type, date_sold,"
+    #                                "IIF(date_sold LIKE '%2018', 2018,"
+    #                                "IIF(date_sold LIKE '%2019', 2019,"
+    #                                "IIF(date_sold LIKE '%2020', 2020,"
+    #                                "IIF(date_sold LIKE '%2021', 2021, Null)))) AS year "
+    #                                "FROM sales GROUP BY date_sold, property_type ORDER BY year, date_sold", conn)
+    #conn.close()
 
-    avg_result = avg_price.to_json(orient= "records")
-    avg_parsed = json.loads(avg_result)
+    #avg_result = avg_price.to_json(orient= "records")
+    #avg_parsed = json.loads(avg_result)
 
-    avg_json = json.dumps(avg_parsed)
-    
-    #return render_template(avg_result)
+    #avg_json = json.dumps(avg_parsed)
 
-    return render_template('Data Comparison.html', avg_json=avg_json)
+    # Note: The team ran out of time to make the API calls for the data comparison page, so for the comparison graphs we hardcoded the data instead.
+    # We included the code above to show the SQL query for the data but commented it out to avoid 404 errors.
+
+    return render_template('Data Comparison.html')
 
 @app.route("/Data_Set")
 def dataset():
@@ -69,19 +70,6 @@ def locationview():
 
     #return (sales_json)
     return render_template('Location View.html', sales_json=sales_json)
-
-@app.route("/test")
-def test():
-    conn = sqlite3.connect("Raw_Data/property.sqlite")
-    test_query = pd.read_sql_query("SELECT * FROM 'sales' LIMIT 0,30", conn)
-    conn.close()
-
-    test_result = test_query.to_json(orient = "records")
-    test_parsed = json.loads(test_result)
-
-    test_json = json.dumps(test_parsed)
-
-    return(test_json)
     
 
 if __name__ == '__main__':
