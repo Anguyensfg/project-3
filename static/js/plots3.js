@@ -61,7 +61,7 @@ var data = [House,Townhouse,Unit];
 
 
 var layout = {
-  title: 'Average Sold Price 2019'
+  title: 'Average Sold Price 2019 ($)'
 };
 
 Plotly.newPlot('plot3', data, layout);

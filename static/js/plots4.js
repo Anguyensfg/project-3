@@ -59,7 +59,7 @@ var Unit = {
 var data = [House,Townhouse,Unit];
 
 var layout = {
-  title: 'Average Sold Price 2020'
+  title: 'Average Sold Price 2020 ($)'
 };
 
 Plotly.newPlot('plot4', data, layout);
