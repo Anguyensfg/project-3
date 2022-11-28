@@ -8,8 +8,8 @@
     <ol>
         <li><a href="#project-title">Project Title</a></li>
         <li><a href="#project-description">Project Description</a></li>
-        <li><a href="#how-to">How to Install and Run</a></li>
-        <li><a href="#how-to-use-the">How to use the project</a></li>
+        <li><a href="#how-to-install-and-run-the-project">How to Install and Run</a></li>
+        <li><a href="#how-to-use-the-project">How to use the project</a></li>
         <li><a href="#team-members">Team Members</a></li>
     </ol>
 </details>
