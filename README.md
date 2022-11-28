@@ -52,21 +52,21 @@ When working on an online group project, it’s crucial to meet with your group 
 Since this is a two-week project, make sure that you have done at least half of your project by the end of the first week in order to stay on track.
 Although you will divide the work among the group members, it’s essential to collaborate and communicate while working on different parts of the project. Be sure to check in with your teammates regularly and offer support.
 
-<p align="right"><a href="#topdoc">top</a></p>
+<p align="right"><a href="#topdoc">Return to the top</a></p>
 
 <!-- How to -->
 # How to Install and Run the project 
 
 PANDAS Project3_Data_Cleanup.ipyny 
 coding use to clean up data and redesigned to be ready to be uploaded to SQLprogress 
-Raw Data file (<h3><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales" target="_blank"> Click here to go to the Kaggle website )
+Raw Data file (<h3><a href="https://www.kaggle.com/datasets/suryajadahake/australia-property-sales" target="_blank"> Click here to go to the Kaggle website )</a></h3>
 Note: Original file size is too large to be uploaded to GitHub pages 
 
 SQLprogress provides an output data file in Raw Data folder which can view the output data.
 
 Git Bash is required to load the APP.py via python to view HTML pages 
 
-<p align="right"><a href="#topdoc">top</a></p>
+<p align="right"><a href="#topdoc">Return to the top</a></p>
 
 # How to use the project
 
@@ -92,11 +92,11 @@ Raw Data Tab
 Data Source Link 
 - Additional information link provided to make decision
 
-<p align="right"><a href="#topdoc">top</a></p>
+<p align="right"><a href="#topdoc">Return to the top</a></p>
 
 # Team Members 
 * Alistair Nguyen 
 * Joshua Tean
 * Neha Sharma
 
-<p align="right"><a href="#topdoc">top</a></p>
+<p align="right"><a href="#topdoc">Return to the top</a></p>
