@@ -111,7 +111,7 @@ setTimeout(function() {
           "Unit": Unit
         };
 
-    // Create our map, giving it the streetmap and mines layers to display on load.
+    // Create our map, giving it the streetmap and property layers to display on load.
     let myMap = L.map("map", {
       center: [-24, 120],
       zoom: 5,
